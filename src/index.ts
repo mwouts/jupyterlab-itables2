@@ -4,7 +4,7 @@ import {
 } from '@jupyterlab/application';
 
 import $ from 'jquery';
-import initDataTables from 'datatables.net';
+import 'datatables.net';
 
 /**
  * Initialization data for the itables-jupyterlab extension.
@@ -14,7 +14,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension itables-jupyterlab is activated!');
-    initDataTables();
 
     // This is not the final code - but say that we want to turn
     // any HTML table into an interactive table
@@ -23,7 +22,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
       for (let i = 0; i < tables.length; i++) {
         const table = tables[i];
-        table.DataTable();
+        console.log('Turning table %s into a datatables.net object', table);
+        $(table.id).DataTable();
       }
     });
   }
